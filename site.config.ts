@@ -10,7 +10,8 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'Alex - Goals and Tasks Dashboard',
-  domain: 'alex-goals-and-tasks-git-main-moonshot-os.vercel.app',
+  // domain: 'alex-goals-and-tasks-git-main-moonshot-os.vercel.app',
+  domain: 'alex-goals-and-tasks.vercel.app',
   author: 'Moonshot OS',
 
   // open graph metadata (optional)
