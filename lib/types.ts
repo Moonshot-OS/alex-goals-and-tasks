@@ -20,7 +20,7 @@ export interface ExtendedTweetRecordMap extends ExtendedRecordMap {
   tweets: Record<string, any>
 }
 
-export interface Params extends ParsedUrlQuery {
+export interface Params extends Record<string, string | string[] | undefined> {
   pageId: string
 }
 
