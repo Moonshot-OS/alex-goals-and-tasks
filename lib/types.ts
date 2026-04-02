@@ -1,5 +1,3 @@
-import { type ParsedUrlQuery } from 'node:url'
-
 import { type ExtendedRecordMap, type PageMap } from 'notion-types'
 
 export * from 'notion-types'
