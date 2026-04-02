@@ -24,11 +24,41 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   }
 }
 
+/*
 export async function getStaticPaths() {
   return {
     paths: [],
     fallback: 'blocking'
   }
+}
+*/
+
+export async function getStaticPaths() {
+  if (isDev) {
+    return {
+      paths: [],
+      fallback: true
+    }
+  }
+
+  const siteMap = await getSiteMap()
+
+  // Combine sitemap paths with URL overrides (e.g., /articles, /notes)
+  // URL overrides might not be in the sitemap if not directly linked from root
+  const allPageIds = [
+    ...new Set([
+      ...Object.keys(siteMap.canonicalPageMap),
+      ...Object.keys(pageUrlOverrides)
+    ])
+  ]
+
+  const staticPaths = {
+    paths: allPageIds.map((pageId) => ({ params: { pageId } })),
+    fallback: true
+  }
+
+  console.log(staticPaths.paths)
+  return staticPaths
 }
 
 export default function NotionDomainDynamicPage(props: PageProps) {
