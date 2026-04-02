@@ -1,3 +1,7 @@
+import pLimit from 'p-limit'
+import { NotionAPI } from 'notion-client'
+import { ExtendedRecordMap, SearchParams, SearchResults } from 'notion-types'
+
 import {
   type ExtendedRecordMap,
   type SearchParams,
@@ -15,6 +19,9 @@ import {
 import { getTweetsMap } from './get-tweets'
 import { notion } from './notion-api'
 import { getPreviewImageMap } from './preview-images'
+
+// Limit to 1 concurrent request to avoid Notion's 429 Too Many Requests errors
+const limit = pLimit(1)
 
 const getNavigationLinkPages = pMemoize(
   async (): Promise<ExtendedRecordMap[]> => {
@@ -43,6 +50,8 @@ const getNavigationLinkPages = pMemoize(
 )
 
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
+  const recordMap = await limit(() => notion.getPage(pageId))
+
   let recordMap = await notion.getPage(pageId)
 
   if (navigationStyle !== 'default') {
