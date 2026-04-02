@@ -1,6 +1,5 @@
 import pLimit from 'p-limit'
 import { NotionAPI } from 'notion-client'
-import { ExtendedRecordMap, SearchParams, SearchResults } from 'notion-types'
 
 import {
   type ExtendedRecordMap,
