@@ -24,15 +24,14 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   }
 }
 
-/*
 export async function getStaticPaths() {
   return {
     paths: [],
     fallback: 'blocking'
   }
 }
-*/
 
+/*
 export async function getStaticPaths() {
   if (isDev) {
     return {
@@ -60,6 +59,7 @@ export async function getStaticPaths() {
   console.log(staticPaths.paths)
   return staticPaths
 }
+*/
 
 export default function NotionDomainDynamicPage(props: PageProps) {
   return <NotionPage {...props} />
